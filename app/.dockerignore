@@ -1,0 +1,9 @@
+__pycache__
+*.pyc
+*.pyo
+venv/
+.git/
+.gitignore
+.env.example
+tmp_work/*
+local_s3/*

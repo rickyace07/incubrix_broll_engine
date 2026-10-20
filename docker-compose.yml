@@ -1,0 +1,20 @@
+services:
+  broll-engine:
+    build: .
+    container_name: incubrix_broll_engine
+    restart: always
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - ./jobs.db:/app/jobs.db
+      - ./local_s3:/app/local_s3
+      - ./tmp_work:/app/tmp_work
+    environment:
+      - PROVIDER_MODE=live
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
